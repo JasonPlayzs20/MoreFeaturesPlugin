@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MoreFeatures:jar">
+    <output-path>$USER_HOME$/Desktop/Desktop/spigot_servers/1.20/spigot 1.20 plugins/plugins</output-path>
+    <root id="archive" name="MoreFeatures.jar">
+      <element id="module-output" name="MoreFeatures" />
+    </root>
+  </artifact>
+</component>

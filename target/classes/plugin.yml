@@ -1,0 +1,9 @@
+name: MoreFeatures
+version: '1.0-SNAPSHOT'
+main: com.jasonplayzs20.morefeatures.MoreFeatures
+api-version: '1.20'
+commands:
+  boost:
+    description: 1t7iuhik
+  getEnchants:
+  summonDummy:
