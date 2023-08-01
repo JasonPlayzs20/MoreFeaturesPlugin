@@ -37,65 +37,15 @@ public class boost implements CommandExecutor {
         ItemStack result = player.getInventory().getItemInMainHand();
         AttackDamages attackDamages = new AttackDamages();
 
-//        if (result.getType().name().toLowerCase().contains("sword")) {
-//            addAttrubute(result,Attribute.GENERIC_ATTACK_SPEED,"generic.attackSpeed", -2.6d);
-//            switch (result.getType().name().toLowerCase()) {
-//                case "wooden_sword":
-//                    dmg = attackDamages.Wood_Sword-1;
-//                    break;
-//                case "stone_sword":
-//                    dmg = attackDamages.Stone_Sword-1;
-//                    break;
-//                case "iron_sword":
-//                    dmg = attackDamages.Iron_Sword-1;
-//                    break;
-//                case "golden_sword":
-//                    dmg = attackDamages.Gold_Sword-1;
-//                    break;
-//                case "diamond_sword":
-//                    dmg = attackDamages.Diamond_Swrod-1;
-//                    break;
-//                case "netherite_sword":
-//                    dmg = attackDamages.Netherite_Sword-1;
-//                    break;
-//                default:
-//                    break;
-//            }
-//        } else if (result.toString().toLowerCase().contains("axe")) {
-//            switch (result.getType().name().toLowerCase()) {
-//                case "wooden_axe":
-//                    dmg = attackDamages.Wood_Axe;
-//                    break;
-//                case "stone_axe":
-//                    dmg = attackDamages.Stone_Axe;
-//                    break;
-//                case "iron_axe":
-//                    dmg = attackDamages.Iron_Axe;
-//                    break;
-//                case "golden_axe":
-//                    dmg = attackDamages.Gold_Axe;
-//                    break;
-//                case "diamond_axe":
-//                    dmg = attackDamages.Diamond_Axe;
-//                    break;
-//                case "netherite_axe":
-//                    dmg = attackDamages.Netherite_Axe;
-//                    break;
-//                default:
-//                    break;
-//            }
-//        }
         player.sendMessage(String.valueOf(dmg));
         player.getInventory().getItemInMainHand().addUnsafeEnchantment(Enchantment.getByKey(key), 1);
         ItemMeta itemMeta = player.getInventory().getItemInMainHand().getItemMeta();
 
-//        AttributeModifier attributeModifier3 = attribute("generic.attackDamage", dmg);
-//        itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, attributeModifier3);
         List list = itemMeta.getLore();
         if (list != null) {
-            itemMeta.setLore(Arrays.asList(list + (ChatColor.GRAY + "Fast Attack")));
+            itemMeta.setLore(Arrays.asList(list + (ChatColor.GRAY + "Fast Attack 1")));
         } else {
-            itemMeta.setLore(Arrays.asList((ChatColor.GRAY + "Fast Attack")));
+            itemMeta.setLore(Arrays.asList((ChatColor.GRAY + "Fast Attack 1")));
         }
         player.getInventory().getItemInMainHand().setItemMeta(itemMeta);
         player.sendMessage("added enchant");
