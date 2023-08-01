@@ -28,8 +28,7 @@ public class FastEnchantment extends Enchantment implements Listener {
 
     @EventHandler
     public void onAttack(EntityDamageByEntityEvent e) {
-//        Bukkit.getPlayer("IamSorry_").sendMessage("booo");
-//        e.getDamager().sendMessage("booo");
+
         if (e.getDamager().getType() == EntityType.PLAYER) {
 
             Player player = (Player) e.getDamager();
@@ -40,15 +39,19 @@ public class FastEnchantment extends Enchantment implements Listener {
                 setNormalSpeed(player);
                 return;
             }
-            ItemStack firstItem = player.getInventory().getItemInMainHand();
+            ItemStack item = player.getInventory().getItemInMainHand();
+            int enchantment = item.getItemMeta().getEnchantLevel(getByKey(this.getKey()));
             Bukkit.getScheduler().cancelTasks(plugin);
             Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, (Runnable) () -> {
                 setNormalSpeed(player);
                 player.sendMessage(ChatColor.GREEN+"Your Speed Attack Has Wore Off");
             },100);
-            player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(5+1.4);
+            player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(-1);
+            player.sendMessage(String.valueOf(player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getValue()));
+            if (enchantment == 1) {
+                player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(5+1.4);
 
-
+            }
         }
     }
 
