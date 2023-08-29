@@ -1,16 +1,30 @@
 package com.jasonplayzs20.morefeatures.Enchantments;
 
+import com.jasonplayzs20.morefeatures.MoreFeatures;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.List;
-
 public class WitherBladeEnchantment extends Enchantment implements Listener {
-    public WitherBladeEnchantment() {
+
+    private final MoreFeatures plugin;// reference to main class
+    public WitherBladeEnchantment(MoreFeatures plugin) {
         super(NamespacedKey.minecraft("wither_blade"));
+        this.plugin = MoreFeatures.getMainInstance();
+    }
+
+    @EventHandler
+    public static void onAttack(EntityDamageByEntityEvent e) {
+        if (!(e.getDamager() instanceof Player)) {
+            return;
+        }
+        Player player = (Player) e.getDamager();
+
     }
 
     @Override
