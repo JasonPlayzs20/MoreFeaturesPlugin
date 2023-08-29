@@ -1,6 +1,7 @@
 package com.jasonplayzs20.morefeatures;
 
 import com.jasonplayzs20.morefeatures.Enchantments.FastEnchantment;
+import com.jasonplayzs20.morefeatures.Enchantments.SlashEnchant;
 import com.jasonplayzs20.morefeatures.Enchantments.WitherBladeEnchantment;
 import com.jasonplayzs20.morefeatures.Listeners.AnvilListener;
 import com.jasonplayzs20.morefeatures.Listeners.ItemMove;
@@ -26,7 +27,8 @@ public final class MoreFeatures extends JavaPlugin {
         mainInstance = this;
 
         FastEnchantment fastEnchantment = new FastEnchantment(mainInstance);
-        WitherBladeEnchantment witherBladeEnchantment = new WitherBladeEnchantment();
+        WitherBladeEnchantment witherBladeEnchantment = new WitherBladeEnchantment(mainInstance);
+        this.getCommand("custom").setExecutor(new SlashEnchant());
         this.getCommand("boost").setExecutor(new boost(fastEnchantment.getKey()));
         this.getCommand("getEnchants").setExecutor(new GetEnchantmentOnItem());
         this.getCommand("summonDummy").setExecutor(new TargetSummonCommands());
