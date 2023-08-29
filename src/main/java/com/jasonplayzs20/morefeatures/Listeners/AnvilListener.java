@@ -105,11 +105,12 @@ public class AnvilListener implements Listener {
 
                 Enchantment enchantment = Enchantment.getByKey(NamespacedKey.minecraft(key));
                 player.sendMessage("enchantment"+enchantment.toString());
-
-                resultMeta.removeEnchant(enchantment);
-                resultMeta.addEnchant(enchantment,enchantmentLevel+1, true);
-                resultLore.remove(lore);
-                resultLore.add(name + " " + (enchantmentLevel+1));
+                if (enchantmentLevel+1 <= enchantment.getMaxLevel()) {
+                    resultMeta.removeEnchant(enchantment);
+                    resultMeta.addEnchant(enchantment, enchantmentLevel + 1, true);
+                    resultLore.remove(lore);
+                    resultLore.add(name + " " + (enchantmentLevel + 1));
+                }
                 resultMeta.setLore(resultLore);
             }
         }
