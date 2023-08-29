@@ -17,6 +17,7 @@ public class ItemMove implements Listener {
     public static void itemScroling(PlayerInteractEvent e) {
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
         if (!e.getPlayer().getInventory().getItemInMainHand().getItemMeta().hasEnchant(Enchantment.getByKey(NamespacedKey.minecraft("fast_attack")))) {
+            e.getPlayer().sendMessage("normal");
             setNormalSpeed(e.getPlayer());
 
         }else {
