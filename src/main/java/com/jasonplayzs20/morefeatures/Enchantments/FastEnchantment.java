@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.EntityType;
@@ -14,6 +15,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import static com.jasonplayzs20.morefeatures.RecipesInnit.ItemStackIn.attribute;
 
 public class FastEnchantment extends Enchantment implements Listener {
 
@@ -26,6 +29,10 @@ public class FastEnchantment extends Enchantment implements Listener {
         player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(2.6+1.4);
     }
 
+    public static void setNormalAttackDamage(Player player) {
+        player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getDefaultValue());
+    }
+
     @EventHandler
     public void onAttack(EntityDamageByEntityEvent e) {
 
@@ -36,6 +43,7 @@ public class FastEnchantment extends Enchantment implements Listener {
                 return;
             }
             if (!player.getInventory().getItemInMainHand().getItemMeta().hasEnchant(this)) {
+                player.sendMessage("normal speed from ench");
                 setNormalSpeed(player);
                 return;
             }
@@ -44,13 +52,18 @@ public class FastEnchantment extends Enchantment implements Listener {
             Bukkit.getScheduler().cancelTasks(plugin);
             Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, (Runnable) () -> {
                 setNormalSpeed(player);
+                setNormalAttackDamage(player);
                 player.sendMessage(ChatColor.GREEN+"Your Speed Attack Has Wore Off");
             },100);
-            player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(-1);
-            player.sendMessage(String.valueOf(player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getValue()));
+            player.sendMessage(String.valueOf(e.getDamage()));
             if (enchantment == 1) {
+                player.sendMessage(String.valueOf(player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).getDefaultValue()));
+                player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(0);
                 player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(5+1.4);
 
+            } else if (enchantment == 2) {
+                player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(9+1.4);
+                setNormalAttackDamage(player);
             }
         }
     }
